@@ -11,15 +11,25 @@ import styles from './UserList.module.css'
 // import gadult from '../../assets/images/gadult.png'
 
 const UserList = (props) => {
+	const deleteHandler = (test) => {
+		props.onDelete(props.users)
+		console.log(
+			'🚀 ~ file: UserList.js ~ line 16 ~ deleteHandler ~ props.users',
+			props.users.id
+		)
+		console.log(
+			'🚀 ~ file: UserList.js ~ line 16 ~ deleteHandler ~ props.users',
+			test.id
+		)
+	}
 	const gender = props.genders
-	// let category
 	return (
 		<Card className={styles.users}>
 			{props.users.length > 0 ? (
 				<ul>
 					{props.users.map((user) => {
 						return (
-							<li key={user.id}>
+							<li key={user.id} title={user.id}>
 								<div>
 									<div>
 										<img
@@ -35,7 +45,7 @@ const UserList = (props) => {
 											? 'mr. '
 											: ' '}
 										{user.name} <br />
-										Age: {user.age}(
+										Age: {user.age} (
 										{user.age >= 18
 											? 'adult'
 											: user.age >= 13
@@ -50,7 +60,8 @@ const UserList = (props) => {
 									<Button
 										title={`delete ${user.id}?`}
 										type='button'
-										name='delete'>
+										name='delete'
+										onClick={deleteHandler}>
 										delete
 									</Button>
 								</div>

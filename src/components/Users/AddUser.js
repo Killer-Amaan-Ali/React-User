@@ -3,11 +3,23 @@ import Card from '../UI/Card'
 import Button from '../UI/Button'
 import Modal from '../UI/Modal'
 import styles from './AddUser.module.css'
+
+const genders = ['male', 'female', 'other']
 const AddUser = (props) => {
 	const [enteredUsername, setEnteredUsername] = useState('')
 	const [enteredAge, setEnteredAge] = useState('')
+	const [enteredGen, setEnteredGen] = useState(genders[0])
 	const [error, setError] = useState()
-
+	//
+	const [age, setAge] = React.useState('')
+	const genChangeHandler = (event) => {
+		setEnteredGen(event.target.value)
+		console.log(
+			'🚀 ~ file: AddUser.js ~ line 17 ~ genChangeHandler ~ event.target.value',
+			event.target.value
+		)
+	}
+	//
 	const usernameChangeHandler = (event) => {
 		setEnteredUsername(event.target.value)
 	}
@@ -15,6 +27,9 @@ const AddUser = (props) => {
 	const ageChangeHandler = (event) => {
 		setEnteredAge(event.target.value)
 	}
+	// const genChangeHandler = (event) => {
+	// 	setEnteredGen(event.target.value)
+	// }
 
 	const SubmitHandler = (event) => {
 		event.preventDefault()
@@ -29,9 +44,15 @@ const AddUser = (props) => {
 			})
 			return
 		}
-		props.onAddUser(enteredUsername, enteredAge, `u${Math.random()}`)
+		props.onAddUser(
+			enteredUsername,
+			enteredAge,
+			enteredGen,
+			`u${Math.random()}`
+		)
 		setEnteredUsername('')
 		setEnteredAge('')
+		setEnteredGen('')
 	}
 	const closeErrorHandler = () => {
 		setError()
@@ -64,6 +85,21 @@ const AddUser = (props) => {
 						onChange={ageChangeHandler}
 						value={enteredAge}
 					/>
+					<label htmlFor='gender'>Gender: </label>
+					<select
+						name='gender'
+						id='gender'
+						value={enteredGen}
+						label='Age'
+						onChange={genChangeHandler}>
+						{genders.map((gen, i) => {
+							return (
+								<option key={gen} value={gen}>
+									{gen}
+								</option>
+							)
+						})}
+					</select>
 					<Button
 						title='Add User'
 						name='Add User'

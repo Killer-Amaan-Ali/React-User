@@ -7,13 +7,16 @@ const App = () => {
 	userArrays = JSON.parse(localStorage.getItem('userData')) || ''
 	const [usersList, setUsersList] = useState([...userArrays])
 
-	const addUserHandler = (uName, uAge, uId) => {
+	const addUserHandler = (uName, uAge, uGen, uId) => {
 		setUsersList((prev) => {
 			localStorage.setItem(
 				'userData',
-				JSON.stringify([...prev, { name: uName, age: uAge, id: uId }])
+				JSON.stringify([
+					...prev,
+					{ name: uName, age: uAge, gen: uGen, id: uId },
+				])
 			)
-			return [...prev, { name: uName, age: uAge, id: uId }]
+			return [...prev, { name: uName, age: uAge, gen: uGen, id: uId }]
 		})
 	}
 	return (

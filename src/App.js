@@ -27,7 +27,9 @@ const App = () => {
 	const openErrorHandler = (uId, uN) => {
 		setError({
 			title: 'Confirmation',
-			message: `Do you want to delete '${uN}' (${uId})?`,
+			message: `Are you sure you want to delete '${uN}' (${uId})?`,
+			yes: 'confirm',
+			no: 'cancel',
 		})
 	}
 	const deleteItemHandler = () => {
@@ -61,6 +63,8 @@ const App = () => {
 					onClose={closeErrorHandler}
 					title={error.title}
 					message={error.message}
+					yes={error.yes}
+					no={error.no}
 					confirm
 				/>
 			)}

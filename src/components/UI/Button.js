@@ -23,6 +23,7 @@ const Button = (props) => {
 				</a>
 			) : (
 				<button
+					style={props.style}
 					title={props?.title}
 					className={`${styles?.button} ${
 						props?.className ? props?.className : ''

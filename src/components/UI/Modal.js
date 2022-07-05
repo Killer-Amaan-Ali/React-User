@@ -15,12 +15,16 @@ const Modal = (props) => {
 					<p>{props.message || 'content...'}</p>
 				</div>
 				<footer className={styles.actions}>
-					<Button title='close' onClick={props.onClose} autoFocus>
-						close
+					<Button title={props.no || 'close'} onClick={props.onClose} autoFocus>
+						{props.no || 'close'}
 					</Button>
 					{props.confirm && (
-						<Button title='Yes' type='submit' onClick={props.onSubmit}>
-							Yes
+						<Button
+							title={props.yes || 'ok'}
+							type='submit'
+							onClick={props.onSubmit}
+							style={{ marginLeft: '10px' }}>
+							{props.yes || 'ok'}
 						</Button>
 					)}
 				</footer>

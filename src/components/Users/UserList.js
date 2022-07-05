@@ -11,16 +11,9 @@ import styles from './UserList.module.css'
 // import gadult from '../../assets/images/gadult.png'
 
 const UserList = (props) => {
-	const deleteHandler = (test) => {
-		props.onDelete(props.users)
-		console.log(
-			'🚀 ~ file: UserList.js ~ line 16 ~ deleteHandler ~ props.users',
-			props.users.id
-		)
-		console.log(
-			'🚀 ~ file: UserList.js ~ line 16 ~ deleteHandler ~ props.users',
-			test.id
-		)
+	const deleteHandler = (event) => {
+		props.onDelete(event.target.id)
+		// console.log(event.target.id)
 	}
 	const gender = props.genders
 	return (
@@ -61,7 +54,8 @@ const UserList = (props) => {
 										title={`delete ${user.id}?`}
 										type='button'
 										name='delete'
-										onClick={deleteHandler}>
+										onClick={deleteHandler}
+										id={user.id}>
 										delete
 									</Button>
 								</div>

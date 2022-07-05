@@ -11,6 +11,7 @@ const Button = (props) => {
 							props?.className ? props?.className : ''
 						}`}
 						onSubmit={props?.OnSubmit}
+						id={props?.id}
 						onClick={props?.OnSubmit}
 						type={props?.type || 'button'}
 						name={props?.name || props?.title}
@@ -27,6 +28,7 @@ const Button = (props) => {
 						props?.className ? props?.className : ''
 					}`}
 					onSubmit={props?.onSubmit}
+					id={props?.id}
 					onClick={props?.onClick}
 					type={props?.type || 'button'}
 					name={props?.name}

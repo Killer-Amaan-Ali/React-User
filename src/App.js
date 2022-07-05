@@ -8,7 +8,7 @@ const App = () => {
 	userArrays = JSON.parse(localStorage.getItem('userData')) || ''
 	const [usersList, setUsersList] = useState([
 		...userArrays,
-		{ name: 'Amaan', age: '18', gen: gendersArray[0], id: 'u0' },
+		// { name: 'Amaan', age: '18', gen: gendersArray[0], id: 'u0' },
 	])
 
 	const addUserHandler = (uName, uAge, uGen, uId) => {
@@ -25,13 +25,11 @@ const App = () => {
 	}
 	const deleteItemHandler = (uId) => {
 		setUsersList((prev) => {
-			const updatedGoals = prev.filter((user) => user.id !== uId)
-			console.log(prev)
-			console.log(
-				'i got deleted :(',
-				prev.filter((user) => user.id === uId)
-			)
-			return updatedGoals
+			const updatedUsers = prev.filter((user) => user.id !== uId)
+			// console.log('prev', prev)
+			console.log('i got deleted :(', prev.filter((user) => user.id === uId)[0])
+			localStorage.setItem('userData', JSON.stringify([...updatedUsers]))
+			return updatedUsers
 		})
 	}
 	return (

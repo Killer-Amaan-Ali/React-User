@@ -43,7 +43,7 @@ const AddUser = (props) => {
 		)
 		setEnteredUsername('')
 		setEnteredAge('')
-		setEnteredGen('')
+		setEnteredGen(props.genders[0])
 	}
 	const closeErrorHandler = () => {
 		setError()

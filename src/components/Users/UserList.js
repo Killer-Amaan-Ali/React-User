@@ -11,8 +11,13 @@ const UserList = (props) => {
 					{props.users.map((user) => {
 						return (
 							<li key={user.id}>
-								Name: {user.gen === gender[1] ? 'Ms.' : 'Mr.'} {user.name}{' '}
-								<br />
+								Name:{' '}
+								{user.gen === gender[1]
+									? 'ms. '
+									: user.gen === gender[0]
+									? 'mr. '
+									: ' '}
+								{user.name} <br />
 								Age: {user.age} (
 								{user.age >= 18 ? 'adult' : user.age >= 13 ? 'teen' : 'child'}
 								)<br />

@@ -11,6 +11,11 @@
   margin-bottom: 0.5rem;
 }
 
+.input option,
+.input select {
+  text-transform: capitalize;
+}
+
 .input input {
   font: inherit;
   display: block;

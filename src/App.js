@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AddUser from './components/Users/AddUser'
 import UserList from './components/Users/UserList'
 
+const gendersArray = ['male', 'female', 'other']
 const App = () => {
 	let userArrays = ''
 	userArrays = JSON.parse(localStorage.getItem('userData')) || ''
@@ -21,8 +22,8 @@ const App = () => {
 	}
 	return (
 		<>
-			<AddUser onAddUser={addUserHandler} />
-			<UserList users={usersList} />
+			<AddUser onAddUser={addUserHandler} genders={gendersArray} />
+			<UserList users={usersList} genders={gendersArray} />
 		</>
 	)
 }

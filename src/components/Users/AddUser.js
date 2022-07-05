@@ -8,7 +8,7 @@ const genders = ['male', 'female', 'other']
 const AddUser = (props) => {
 	const [enteredUsername, setEnteredUsername] = useState('')
 	const [enteredAge, setEnteredAge] = useState('')
-	const [enteredGen, setEnteredGen] = useState(genders[0])
+	const [enteredGen, setEnteredGen] = useState(props.genders[0])
 	const [error, setError] = useState()
 	//
 	const [age, setAge] = React.useState('')
@@ -92,7 +92,7 @@ const AddUser = (props) => {
 						value={enteredGen}
 						label='Age'
 						onChange={genChangeHandler}>
-						{genders.map((gen, i) => {
+						{props.genders.map((gen, i) => {
 							return (
 								<option key={gen} value={gen}>
 									{gen}

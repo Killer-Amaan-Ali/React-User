@@ -1,36 +1,49 @@
 import React, { useState } from 'react'
 import AddUser from './components/Users/AddUser'
 import UserList from './components/Users/UserList'
+import Modal from './components/UI/Modal'
 
 const gendersArray = ['male', 'female']
 const App = () => {
-	let userArrays = ''
-	userArrays = JSON.parse(localStorage.getItem('userData')) || ''
+	const userArrays = JSON.parse(localStorage.getItem('userData')) || ''
 	const [usersList, setUsersList] = useState([
 		...userArrays,
 		// { name: 'Amaan', age: '18', gen: gendersArray[0], id: 'u0' },
 	])
+	const [error, setError] = useState()
 
 	const addUserHandler = (uName, uAge, uGen, uId) => {
 		setUsersList((prev) => {
 			localStorage.setItem(
 				'userData',
 				JSON.stringify([
-					...prev,
 					{ name: uName, age: uAge, gen: uGen, id: uId },
+					...prev,
 				])
 			)
-			return [...prev, { name: uName, age: uAge, gen: uGen, id: uId }]
+			return [{ name: uName, age: uAge, gen: uGen, id: uId }, ...prev]
 		})
 	}
-	const deleteItemHandler = (uId) => {
+	const openErrorHandler = (uId, uN) => {
+		setError({
+			title: 'Confirmation',
+			message: `Do you want to delete '${uN}'?`,
+		})
+	}
+	const deleteItemHandler = () => {
 		setUsersList((prev) => {
+			const uId = localStorage.getItem('id')
 			const updatedUsers = prev.filter((user) => user.id !== uId)
+			// console.log('updatedUsers', updatedUsers)
 			// console.log('prev', prev)
 			console.log('i got deleted :(', prev.filter((user) => user.id === uId)[0])
 			localStorage.setItem('userData', JSON.stringify([...updatedUsers]))
+			setError(null)
 			return updatedUsers
 		})
+	}
+	const closeErrorHandler = () => {
+		setError(null)
 	}
 	return (
 		<>
@@ -38,8 +51,18 @@ const App = () => {
 			<UserList
 				users={usersList}
 				genders={gendersArray}
-				onDelete={deleteItemHandler}
+				// onDelete={deleteItemHandler}
+				onDelete={openErrorHandler}
 			/>
+			{error && (
+				<Modal
+					onSubmit={deleteItemHandler}
+					onClose={closeErrorHandler}
+					title={error.title}
+					message={error.message}
+					confirm
+				/>
+			)}
 		</>
 	)
 }

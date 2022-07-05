@@ -12,8 +12,9 @@ import styles from './UserList.module.css'
 
 const UserList = (props) => {
 	const deleteHandler = (event) => {
-		props.onDelete(event.target.id)
-		// console.log(event.target.id)
+		props.onDelete(event.target.id, event.target.name)
+		localStorage.setItem('id', event.target.id)
+		// console.log(event.target.id, event.target.name)
 	}
 	const gender = props.genders
 	return (
@@ -53,7 +54,7 @@ const UserList = (props) => {
 									<Button
 										title={`delete ${user.id}?`}
 										type='button'
-										name='delete'
+										name={user.name}
 										onClick={deleteHandler}
 										id={user.id}>
 										delete
@@ -64,7 +65,7 @@ const UserList = (props) => {
 					})}
 				</ul>
 			) : (
-				<ul>No users found, Maybe Add one?</ul>
+				<p>No users found, Maybe Add one?</p>
 			)}
 		</Card>
 	)

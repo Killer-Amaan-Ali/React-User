@@ -9,6 +9,11 @@
   padding: 1rem;
 }
 
+.users p {
+  text-align: center;
+  padding: 1rem 0;
+}
+
 
 .users li {
   border: 1px solid #ccc;

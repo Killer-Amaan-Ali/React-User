@@ -5,9 +5,10 @@ import Modal from '../UI/Modal'
 import styles from './AddUser.module.css'
 
 const AddUser = (props) => {
+	const defGen = props.genders[0]
 	const [enteredUsername, setEnteredUsername] = useState('')
 	const [enteredAge, setEnteredAge] = useState('')
-	const [enteredGen, setEnteredGen] = useState(props.genders[0])
+	const [enteredGen, setEnteredGen] = useState(defGen)
 	const [error, setError] = useState()
 
 	const usernameChangeHandler = (event) => {
@@ -43,7 +44,7 @@ const AddUser = (props) => {
 		)
 		setEnteredUsername('')
 		setEnteredAge('')
-		setEnteredGen(props.genders[0])
+		setEnteredGen(defGen)
 	}
 	const closeErrorHandler = () => {
 		setError()

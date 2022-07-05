@@ -13,15 +13,16 @@ const Button = (props) => {
 						onSubmit={props?.OnSubmit}
 						onClick={props?.OnSubmit}
 						type={props?.type || 'button'}
-						name={props?.name}
+						name={props?.name || props?.title}
 						autoFocus={props?.autoFocus ? true : false}
 						value={props?.value}
 						disabled={props?.disabled ? true : false}>
-						{props?.title}
+						{props?.children ? props?.children : 'button...'}
 					</button>
 				</a>
 			) : (
 				<button
+					title={props?.title}
 					className={`${styles?.button} ${
 						props?.className ? props?.className : ''
 					}`}
@@ -32,7 +33,7 @@ const Button = (props) => {
 					autoFocus={props?.autoFocus ? true : false}
 					value={props?.value}
 					disabled={props?.disabled ? true : false}>
-					{props?.title}
+					{props?.children ? props?.children : 'button...'}
 				</button>
 			)}
 		</>

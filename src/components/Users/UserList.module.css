@@ -9,9 +9,23 @@
   padding: 1rem;
 }
 
+
 .users li {
   border: 1px solid #ccc;
   margin: 0.5rem 0;
   padding: 0.5rem;
   text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.users li>div {
+  display: flex;
+  align-items: center;
+}
+
+.users li div img {
+  width: 100px;
+  margin-right: 20px;
 }

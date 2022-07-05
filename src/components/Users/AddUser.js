@@ -60,7 +60,7 @@ const AddUser = (props) => {
 			)}
 			<Card className={styles.input}>
 				<form onSubmit={SubmitHandler}>
-					<label htmlFor='username'>Username: </label>
+					<label htmlFor='username'>name: </label>
 					<input
 						type='text'
 						name='username'
@@ -95,8 +95,9 @@ const AddUser = (props) => {
 						title='Add User'
 						name='Add User'
 						value='Add User'
-						type='submit'
-					/>
+						type='submit'>
+						Add User
+					</Button>
 				</form>
 			</Card>
 		</>

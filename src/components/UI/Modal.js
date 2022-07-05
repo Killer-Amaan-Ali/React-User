@@ -15,12 +15,9 @@ const Modal = (props) => {
 					<p>{props.message || 'content...'}</p>
 				</div>
 				<footer className={styles.actions}>
-					<Button
-						title='close'
-						type='submit'
-						onClick={props.onClose}
-						autoFocus
-					/>
+					<Button title='close' type='submit' onClick={props.onClose} autoFocus>
+						close
+					</Button>
 				</footer>
 			</Card>
 		</>

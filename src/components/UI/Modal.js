@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react'
 import Card from './Card'
 import Button from './Button'
 import styles from './Modal.module.css'

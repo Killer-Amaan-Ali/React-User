@@ -3,17 +3,20 @@ import Card from '../UI/Card'
 import Button from '../UI/Button'
 import styles from './UserList.module.css'
 
-// import bchild from '../../assets/images/bchild.png'
-// import bteen from '../../assets/images/bteen.png'
-// import badult from '../../assets/images/badult.png'
-// import gchild from '../../assets/images/gchild.png'
-// import gteen from '../../assets/images/gteen.png'
-// import gadult from '../../assets/images/gadult.png'
+const images = {
+	badult: `${process.env.PUBLIC_URL}/assets/images/badult.png`,
+	bteen: `${process.env.PUBLIC_URL}/assets/images/bteen.png`,
+	bchild: `${process.env.PUBLIC_URL}/assets/images/bchild.png`,
+	gadult: `${process.env.PUBLIC_URL}/assets/images/gadult.png`,
+	gteen: `${process.env.PUBLIC_URL}/assets/images/gteen.png`,
+	gchild: `${process.env.PUBLIC_URL}/assets/images/gchild.png`,
+	default: `${process.env.PUBLIC_URL}/assets/images/default.png`,
+}
 
 const UserList = (props) => {
 	const deleteHandler = (event) => {
 		props.onDelete(event.target.id, event.target.name)
-		localStorage.setItem('id', event.target.id)
+		localStorage.setItem('deletedUserId', event.target.id)
 		// console.log(event.target.id, event.target.name)
 	}
 	const gender = props.genders
@@ -26,10 +29,7 @@ const UserList = (props) => {
 							<li key={user.id} title={user.id}>
 								<div>
 									<div>
-										<img
-											alt={user.gen}
-											// src={}
-										/>
+										<img alt={user.gen} src={images.badult} />
 									</div>
 									<div>
 										Name:{' '}

@@ -27,18 +27,19 @@ const App = () => {
 	const openErrorHandler = (uId, uN) => {
 		setError({
 			title: 'Confirmation',
-			message: `Do you want to delete '${uN}'?`,
+			message: `Do you want to delete '${uN}' (${uId})?`,
 		})
 	}
 	const deleteItemHandler = () => {
 		setUsersList((prev) => {
-			const uId = localStorage.getItem('id')
+			const uId = localStorage.getItem('deletedUserId')
 			const updatedUsers = prev.filter((user) => user.id !== uId)
 			// console.log('updatedUsers', updatedUsers)
 			// console.log('prev', prev)
 			console.log('i got deleted :(', prev.filter((user) => user.id === uId)[0])
 			localStorage.setItem('userData', JSON.stringify([...updatedUsers]))
-			setError(null)
+			closeErrorHandler()
+			localStorage.removeItem('deletedUserId')
 			return updatedUsers
 		})
 	}

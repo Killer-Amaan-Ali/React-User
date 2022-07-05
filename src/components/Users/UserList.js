@@ -17,10 +17,6 @@ const UserList = (props) => {
 			) : (
 				<ul>No users found, Maybe Add one?</ul>
 			)}
-			{console.log(
-				'🚀 ~ file: UserList.js ~ line 20 ~ UserList ~ props.users',
-				props.users
-			)}
 		</Card>
 	)
 }

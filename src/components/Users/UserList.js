@@ -20,7 +20,7 @@ const UserList = (props) => {
 		// console.log(event.target.id, event.target.name)
 	}
 	const gender = props.genders
-	let image
+	let image = images.default
 	let userAge
 	return (
 		<Card className={styles.users}>

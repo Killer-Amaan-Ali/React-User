@@ -3,11 +3,9 @@ import Card from './Card'
 import Button from './Button'
 import styles from './Modal.module.css'
 
-// const BackDrop = (props) => {
-// }
 const Modal = (props) => {
 	return (
-		<div>
+		<>
 			<div className={styles.backdrop} onClick={props.onClose} />
 			<Card className={styles.modal}>
 				<header className={styles.header}>
@@ -25,7 +23,7 @@ const Modal = (props) => {
 					/>
 				</footer>
 			</Card>
-		</div>
+		</>
 	)
 }
 

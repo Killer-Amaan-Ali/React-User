@@ -6,18 +6,20 @@ const UserList = (props) => {
 		<Card className={styles.users}>
 			{props.users.length > 0 ? (
 				<ul>
-					{props.users.map((user, index) => {
+					{props.users.map((user) => {
 						return (
-							<li key={index}>
+							<li key={user.id}>
 								{user.name} ({user.age})
 							</li>
 						)
 					})}
 				</ul>
 			) : (
-				<ul>
-					<li>No users found, Maybe Add one?</li>
-				</ul>
+				<ul>No users found, Maybe Add one?</ul>
+			)}
+			{console.log(
+				'🚀 ~ file: UserList.js ~ line 20 ~ UserList ~ props.users',
+				props.users
 			)}
 		</Card>
 	)

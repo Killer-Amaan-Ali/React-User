@@ -2,27 +2,27 @@ import React, { useState } from 'react'
 import AddUser from './components/Users/AddUser'
 import UserList from './components/Users/UserList'
 
-function App() {
+const App = () => {
 	let arrays = ''
 	if (localStorage.length > 0) {
 		arrays = JSON.parse(localStorage?.getItem('data'))
 	}
 	const [usersList, setUsersList] = useState([...arrays])
 
-	const addUserHandler = (uName, uAge) => {
+	const addUserHandler = (uName, uAge, uId) => {
 		setUsersList((prev) => {
 			localStorage.setItem(
 				'data',
-				JSON.stringify([...prev, { name: uName, age: uAge }])
+				JSON.stringify([...prev, { name: uName, age: uAge, id: uId }])
 			)
-			return [...prev, { name: uName, age: uAge }]
+			return [...prev, { name: uName, age: uAge, id: uId }]
 		})
 	}
 	return (
-		<div>
+		<>
 			<AddUser onAddUser={addUserHandler} />
 			<UserList users={usersList} />
-		</div>
+		</>
 	)
 }
 

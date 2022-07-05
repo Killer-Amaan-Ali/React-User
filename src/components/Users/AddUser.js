@@ -23,12 +23,13 @@ const AddUser = (props) => {
 			return
 		}
 		if (+enteredAge < 1) {
-			setError({ title: 'baby!', message: 'bruh, age cant be less than 0' })
+			setError({
+				title: 'baby!',
+				message: 'bruh, age cant be less than / equal to 0',
+			})
 			return
 		}
-		console.log('Name: ', enteredUsername)
-		console.log('Age: ', enteredAge)
-		props.onAddUser(enteredUsername, enteredAge)
+		props.onAddUser(enteredUsername, enteredAge, `u${Math.random()}`)
 		setEnteredUsername('')
 		setEnteredAge('')
 	}

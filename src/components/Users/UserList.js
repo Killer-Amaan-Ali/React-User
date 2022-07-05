@@ -72,6 +72,15 @@ const UserList = (props) => {
 								</div>
 								<div>
 									<Button
+										style={{ marginRight: '10px' }}
+										disabled
+										title={`edit ${user.id}?`}
+										type='button'
+										name={user.name}
+										id={user.id}>
+										edit
+									</Button>
+									<Button
 										title={`delete ${user.id}?`}
 										type='button'
 										name={user.name}

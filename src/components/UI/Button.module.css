@@ -18,6 +18,15 @@
   border-color: #741188;
 }
 
+
 .button:focus {
   outline: none;
+}
+
+.disabled {
+  background: #a450b4;
+}
+
+.disabled:hover {
+  background: #a450b4;
 }

@@ -17,6 +17,7 @@
   text-transform: capitalize;
 }
 
+.input select,
 .input input {
   font: inherit;
   display: block;
@@ -26,6 +27,7 @@
   margin-bottom: 0.5rem;
 }
 
+.input select:focus,
 .input input:focus {
   outline: none;
   border-color: #4f005f;

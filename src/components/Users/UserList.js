@@ -20,16 +20,41 @@ const UserList = (props) => {
 		// console.log(event.target.id, event.target.name)
 	}
 	const gender = props.genders
+	let image
+	let userAge
 	return (
 		<Card className={styles.users}>
 			{props.users.length > 0 ? (
 				<ul>
 					{props.users.map((user) => {
+						if (user.gen === gender[0]) {
+							if (user.age >= 18) {
+								image = images.badult
+								userAge = 'adult'
+							} else if (user.age >= 13) {
+								image = images.bteen
+								userAge = 'teen'
+							} else {
+								image = images.bchild
+								userAge = 'child'
+							}
+						} else {
+							if (user.age >= 18) {
+								image = images.gadult
+								userAge = 'adult'
+							} else if (user.age >= 13) {
+								image = images.gteen
+								userAge = 'teen'
+							} else {
+								image = images.gchild
+								userAge = 'child'
+							}
+						}
 						return (
 							<li key={user.id} title={user.id}>
 								<div>
 									<div>
-										<img alt={user.gen} src={images.badult} />
+										<img alt={user.gen} src={image} />
 									</div>
 									<div>
 										Name:{' '}
@@ -39,12 +64,7 @@ const UserList = (props) => {
 											? 'mr. '
 											: ' '}
 										{user.name} <br />
-										Age: {user.age} (
-										{user.age >= 18
-											? 'adult'
-											: user.age >= 13
-											? 'teen'
-											: 'child'}
+										Age: {user.age} ({userAge}
 										)
 										<br />
 										Gender: {user.gen}

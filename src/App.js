@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import AddUser from './components/Users/AddUser'
 import UserList from './components/Users/UserList'
 import Modal from './components/UI/Modal'
-
+import styles from './components/Users/AddUser.module.css'
 const gendersArray = ['male', 'female']
 const App = () => {
 	const userArrays = JSON.parse(localStorage.getItem('userData')) || ''
@@ -144,6 +144,7 @@ const App = () => {
 			)}
 			{edit && (
 				<Modal
+					className={styles.input}
 					onSubmit={editUserHandler}
 					onClose={closeEditHandler}
 					title={edit.title}

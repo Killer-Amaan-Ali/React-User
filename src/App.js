@@ -5,25 +5,28 @@ import Modal from './components/UI/Modal'
 
 const gendersArray = ['male', 'female']
 const App = () => {
+	const [enteredUsername, setEnteredUsername] = useState('')
+	const [enteredAge, setEnteredAge] = useState('')
+	const [enteredGen, setEnteredGen] = useState('')
+	// const [enteredDate, setEnteredDate] = useState('')
+	const [error, setError] = useState()
 	const userArrays = JSON.parse(localStorage.getItem('userData')) || ''
 	const [usersList, setUsersList] = useState([
 		...userArrays,
 		// { name: 'Amaan', age: '18', gen: gendersArray[0], id: 'u0' },
 	])
-	const [error, setError] = useState()
 	const [edit, setEdit] = useState()
 
-	const addUserHandler = (uName, uAge, uGen, uId) => {
-		setUsersList((prev) => {
-			localStorage.setItem(
-				'userData',
-				JSON.stringify([
-					{ name: uName, age: uAge, gen: uGen, id: uId },
-					...prev,
-				])
-			)
-			return [{ name: uName, age: uAge, gen: uGen, id: uId }, ...prev]
-		})
+	const usernameChangeHandler = (event) => {
+		setEnteredUsername(event.target.value)
+	}
+
+	const ageChangeHandler = (event) => {
+		setEnteredAge(event.target.value)
+	}
+
+	const genChangeHandler = (event) => {
+		setEnteredGen(event.target.value)
 	}
 	const openErrorHandler = (uId, uN) => {
 		setError({
@@ -39,23 +42,49 @@ const App = () => {
 			message: `Are you sure you want to delete '${uN}' (${uId})?`,
 			yes: 'confirm',
 			no: 'cancel',
-			userName: uN,
-			userAge: uA,
-			userGen: uG,
+		})
+		setEnteredUsername(uN)
+		setEnteredAge(uA)
+	}
+
+	const addUserHandler = (uName, uAge, uGen, uId) => {
+		setUsersList((prev) => {
+			localStorage.setItem(
+				'userData',
+				JSON.stringify([
+					{ name: uName, age: uAge, gen: uGen, id: uId },
+					...prev,
+				])
+			)
+			return [{ name: uName, age: uAge, gen: uGen, id: uId }, ...prev]
 		})
 	}
-	const editItemHandler = () => {
-		setUsersList((prev) => {
-			const uId = localStorage.getItem('deletedUserId')
-			const updatedUsers = prev.filter((user) => user.id !== uId)
-			// console.log('updatedUsers', updatedUsers)
-			// console.log('prev', prev)
-			console.log('i got deleted :(', prev.filter((user) => user.id === uId)[0])
-			localStorage.setItem('userData', JSON.stringify([...updatedUsers]))
-			closeHandler()
-			localStorage.removeItem('deletedUserId')
-			return updatedUsers
-		})
+
+	const editItemHandler = (uName, uAge, uGen, uId) => {
+		if (enteredAge.trim().length === 0 || enteredUsername.trim().length === 0) {
+			setError({ title: 'hey there', message: 'uuum, input something!' })
+			return
+		}
+		console.log(
+			'🚀 ~ file: AddUser.js ~ line 33 ~ SubmitHandler ~ enteredUsername',
+			enteredUsername
+		)
+		// if (enteredUsername == 1) {
+		// 	console.log('hi')
+		// }
+		if (+enteredAge < 1) {
+			setError({
+				title: 'baby!',
+				message: `bruh, age cant be less than / equal to 0  (Entered age: ${+enteredAge})`,
+			})
+			return
+		} else if (+enteredAge > 80) {
+			setError({
+				title: 'old!',
+				message: `bruh, age cant be more than 80! (Entered age: ${+enteredAge})`,
+			})
+			return
+		}
 	}
 	const deleteItemHandler = () => {
 		setUsersList((prev) => {
@@ -109,16 +138,18 @@ const App = () => {
 						name='username'
 						id='username'
 						type='text'
-						value={edit.userName}
-						// onChange={}
+						// value={edit.userName}
+						value={enteredUsername}
+						onChange={usernameChangeHandler}
 					/>
 					<label htmlFor='age'>Age (in years): </label>
 					<input
 						id='age'
 						name='age'
 						type='number'
-						// onChange={}
-						value={edit.userAge}
+						onChange={ageChangeHandler}
+						// value={edit.userAge}
+						value={enteredAge}
 					/>
 				</Modal>
 			)}

@@ -99,7 +99,6 @@ const App = () => {
 			localStorage.setItem('userData', JSON.stringify(all))
 			return all
 		})
-
 		closeEditHandler()
 	}
 	const deleteUserHandler = () => {
@@ -146,7 +145,7 @@ const App = () => {
 				<Modal
 					className={styles.input}
 					onSubmit={editUserHandler}
-					onClose={closeEditHandler}
+					// onClose={closeEditHandler}
 					title={edit.title}
 					// message={edit.message}
 					yes={edit.yes}

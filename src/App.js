@@ -9,7 +9,8 @@ const App = () => {
 	const [usersList, setUsersList] = useState([...userArrays])
 	const [enteredUsername, setEnteredUsername] = useState('')
 	const [enteredAge, setEnteredAge] = useState('')
-	// const [enteredGen, setEnteredGen] = useState('')
+	const [enteredGen, setEnteredGen] = useState('')
+
 	const [enteredId, setEnteredId] = useState('')
 
 	const [error, setError] = useState()
@@ -23,9 +24,9 @@ const App = () => {
 		setEnteredAge(event.target.value)
 	}
 
-	// const genChangeHandler = (event) => {
-	// 	setEnteredGen(event.target.value)
-	// }
+	const genChangeHandler = (event) => {
+		setEnteredGen(event.target.value)
+	}
 
 	const openErrorHandler = (uId, uN) => {
 		setError({
@@ -44,7 +45,7 @@ const App = () => {
 		})
 		setEnteredUsername(uN)
 		setEnteredAge(uA)
-		// setEnteredGen(uG)
+		setEnteredGen(uG)
 		setEnteredId(uId)
 	}
 
@@ -84,6 +85,7 @@ const App = () => {
 		}
 		console.log('entered Username: ', enteredUsername)
 		console.log('entered Age: ', enteredAge)
+		console.log('entered gender: ', enteredGen)
 
 		setUsersList((prev) => {
 			const editedUser = prev.filter((user) => user.id === enteredId)[0]
@@ -91,6 +93,7 @@ const App = () => {
 			const all = [editedUser, ...prevUser]
 			editedUser.name = enteredUsername
 			editedUser.age = enteredAge
+			editedUser.gen = enteredGen
 			console.log('i got edited :(', editedUser)
 			console.log('i stayed :(', prevUser)
 			localStorage.setItem('userData', JSON.stringify(all))
@@ -164,6 +167,20 @@ const App = () => {
 						onChange={ageChangeHandler}
 						value={enteredAge}
 					/>
+					<label htmlFor='gender'>Gender: </label>
+					<select
+						name='gender'
+						id='gender'
+						onChange={genChangeHandler}
+						value={enteredGen}>
+						{gendersArray.map((gen) => {
+							return (
+								<option key={gen} value={gen}>
+									{gen}
+								</option>
+							)
+						})}
+					</select>
 				</Modal>
 			)}
 		</>

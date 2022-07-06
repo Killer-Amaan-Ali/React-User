@@ -99,7 +99,6 @@ const AddUser = (props) => {
 					<select
 						name='gender'
 						id='gender'
-						label='Age'
 						value={enteredGen}
 						onChange={genChangeHandler}>
 						{props.genders.map((gen) => {

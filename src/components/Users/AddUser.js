@@ -9,6 +9,7 @@ const AddUser = (props) => {
 	const [enteredUsername, setEnteredUsername] = useState('')
 	const [enteredAge, setEnteredAge] = useState('')
 	const [enteredGen, setEnteredGen] = useState(defGen)
+	// const [enteredDate, setEnteredDate] = useState('')
 	const [error, setError] = useState()
 
 	const usernameChangeHandler = (event) => {
@@ -23,16 +24,33 @@ const AddUser = (props) => {
 		setEnteredGen(event.target.value)
 	}
 
+	// const dateChangeHandler = (event) => {
+	// 	setEnteredDate(event.target.value)
+	// }
+
 	const SubmitHandler = (event) => {
 		event.preventDefault()
 		if (enteredAge.trim().length === 0 || enteredUsername.trim().length === 0) {
 			setError({ title: 'hey there', message: 'uuum, input something!' })
 			return
 		}
+		console.log(
+			'🚀 ~ file: AddUser.js ~ line 33 ~ SubmitHandler ~ enteredUsername',
+			enteredUsername
+		)
+		// if (enteredUsername == 1) {
+		// 	console.log('hi')
+		// }
 		if (+enteredAge < 1) {
 			setError({
 				title: 'baby!',
-				message: 'bruh, age cant be less than / equal to 0',
+				message: `bruh, age cant be less than / equal to 0  (Entered age: ${+enteredAge})`,
+			})
+			return
+		} else if (+enteredAge > 80) {
+			setError({
+				title: 'old!',
+				message: `bruh, age cant be more than 80! (Entered age: ${+enteredAge})`,
 			})
 			return
 		}
@@ -81,10 +99,10 @@ const AddUser = (props) => {
 					<select
 						name='gender'
 						id='gender'
-						value={enteredGen}
 						label='Age'
+						value={enteredGen}
 						onChange={genChangeHandler}>
-						{props.genders.map((gen, i) => {
+						{props.genders.map((gen) => {
 							return (
 								<option key={gen} value={gen}>
 									{gen}
@@ -92,6 +110,14 @@ const AddUser = (props) => {
 							)
 						})}
 					</select>
+					{/* <label htmlFor='date'>DOB: </label>
+					<input
+						type='date'
+						name='date'
+						id='date'
+						value={enteredDate}
+						onChange={dateChangeHandler}
+					/> */}
 					<Button
 						title='Add User'
 						name='Add User'

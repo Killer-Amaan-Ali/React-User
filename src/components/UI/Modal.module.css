@@ -28,6 +28,7 @@
   text-transform: capitalize;
 }
 
+.children,
 .content {
   padding: 1rem;
 }

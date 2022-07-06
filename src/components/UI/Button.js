@@ -17,19 +17,19 @@ const Button = (props) => {
 						name={props?.name || props?.title}
 						autoFocus={props?.autoFocus ? true : false}
 						value={props?.value}
-						disabled={props?.disabled ? true : false}>
+						disabled={props?.disabled}>
 						{props?.children ? props?.children : 'button...'}
 					</button>
 				</a>
 			) : (
 				<button
 					style={props.style}
-					disabled={props?.disabled ? true : false}
+					disabled={props?.disabled}
 					title={props?.title}
 					className={`${styles?.button} ${
 						props?.className ? props?.className : ''
 					}
-					${props?.disabled ? 'disabled' : ''}`}
+					`}
 					onSubmit={props?.onSubmit}
 					id={props?.id}
 					onClick={props?.onClick}

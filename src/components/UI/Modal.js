@@ -8,12 +8,17 @@ const Modal = (props) => {
 		<>
 			<div className={styles.backdrop} onClick={props.onClose} />
 			<Card className={styles.modal}>
-				<header className={styles.header}>
-					<h2>{props.title || 'Error'}</h2>
-				</header>
-				<div className={styles.content}>
-					<p>{props.message || 'content...'}</p>
-				</div>
+				{props.title && (
+					<header className={styles.header}>
+						<h2>{props.title}</h2>
+					</header>
+				)}
+				{props.message && (
+					<div className={styles.content}>
+						<p>{props.message}</p>
+					</div>
+				)}
+				<div className={styles.children}>{props.children}</div>
 				<footer className={styles.actions}>
 					<Button title={props.no || 'close'} onClick={props.onClose} autoFocus>
 						{props.no || 'close'}

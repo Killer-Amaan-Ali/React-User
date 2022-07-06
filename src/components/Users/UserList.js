@@ -19,6 +19,16 @@ const UserList = (props) => {
 		localStorage.setItem('deletedUserId', event.target.id)
 		// console.log(event.target.id, event.target.name)
 	}
+	const editHandler = (event) => {
+		const editData = JSON.parse(localStorage.getItem('userData'))[
+			event.target.value
+		]
+		console.log(
+			"🚀 ~ file: UserList.js ~ line 25 ~ editHandler ~ localStorage.getItem('userData')",
+			JSON.parse(localStorage.getItem('userData'))[event.target.value]
+		)
+		props.onEdit(editData.name, editData.age, editData.gen, editData.id)
+	}
 	const gender = props.genders
 	let image = images.default
 	let userAge
@@ -26,7 +36,7 @@ const UserList = (props) => {
 		<Card className={styles.users}>
 			{props.users.length > 0 ? (
 				<ul>
-					{props.users.map((user) => {
+					{props.users.map((user, i) => {
 						if (user.gen === gender[0]) {
 							if (user.age >= 18) {
 								image = images.badult
@@ -72,11 +82,13 @@ const UserList = (props) => {
 								</div>
 								<div>
 									<Button
+										value={i}
 										style={{ marginRight: '10px' }}
-										disabled
+										disabled={false}
 										title={`edit ${user.id}?`}
 										type='button'
 										name={user.name}
+										onClick={editHandler}
 										id={user.id}>
 										edit
 									</Button>

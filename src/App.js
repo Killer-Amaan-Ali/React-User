@@ -87,10 +87,14 @@ const App = () => {
 
 		setUsersList((prev) => {
 			const editedUser = prev.filter((user) => user.id === enteredId)[0]
+			const prevUser = prev.filter((user) => user.id !== enteredId)
+			const all = [editedUser, ...prevUser]
 			editedUser.name = enteredUsername
 			editedUser.age = enteredAge
 			console.log('i got edited :(', editedUser)
-			return editedUser
+			console.log('i stayed :(', prevUser)
+			localStorage.setItem('userData', JSON.stringify(all))
+			return all
 		})
 
 		closeEditHandler()

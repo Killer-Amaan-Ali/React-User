@@ -5,16 +5,14 @@ import Modal from './components/UI/Modal'
 
 const gendersArray = ['male', 'female']
 const App = () => {
+	const userArrays = JSON.parse(localStorage.getItem('userData')) || ''
+	const [usersList, setUsersList] = useState([...userArrays])
 	const [enteredUsername, setEnteredUsername] = useState('')
 	const [enteredAge, setEnteredAge] = useState('')
 	// const [enteredGen, setEnteredGen] = useState('')
-	// const [enteredDate, setEnteredDate] = useState('')
+	const [enteredId, setEnteredId] = useState('')
+
 	const [error, setError] = useState()
-	const userArrays = JSON.parse(localStorage.getItem('userData')) || ''
-	const [usersList, setUsersList] = useState([
-		...userArrays,
-		// { name: 'Amaan', age: '18', gen: gendersArray[0], id: 'u0' },
-	])
 	const [edit, setEdit] = useState()
 
 	const usernameChangeHandler = (event) => {
@@ -47,6 +45,7 @@ const App = () => {
 		setEnteredUsername(uN)
 		setEnteredAge(uA)
 		// setEnteredGen(uG)
+		setEnteredId(uId)
 	}
 
 	const addUserHandler = (uName, uAge, uGen, uId) => {
@@ -85,7 +84,16 @@ const App = () => {
 		}
 		console.log('entered Username: ', enteredUsername)
 		console.log('entered Age: ', enteredAge)
-		setEdit(null)
+
+		setUsersList((prev) => {
+			const editedUser = prev.filter((user) => user.id === enteredId)[0]
+			editedUser.name = enteredUsername
+			editedUser.age = enteredAge
+			console.log('i got edited :(', editedUser)
+			return editedUser
+		})
+
+		closeEditHandler()
 	}
 	const deleteUserHandler = () => {
 		setUsersList((prev) => {

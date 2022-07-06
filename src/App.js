@@ -7,7 +7,7 @@ const gendersArray = ['male', 'female']
 const App = () => {
 	const [enteredUsername, setEnteredUsername] = useState('')
 	const [enteredAge, setEnteredAge] = useState('')
-	const [enteredGen, setEnteredGen] = useState('')
+	// const [enteredGen, setEnteredGen] = useState('')
 	// const [enteredDate, setEnteredDate] = useState('')
 	const [error, setError] = useState()
 	const userArrays = JSON.parse(localStorage.getItem('userData')) || ''
@@ -25,9 +25,10 @@ const App = () => {
 		setEnteredAge(event.target.value)
 	}
 
-	const genChangeHandler = (event) => {
-		setEnteredGen(event.target.value)
-	}
+	// const genChangeHandler = (event) => {
+	// 	setEnteredGen(event.target.value)
+	// }
+
 	const openErrorHandler = (uId, uN) => {
 		setError({
 			title: 'Confirmation',
@@ -45,6 +46,7 @@ const App = () => {
 		})
 		setEnteredUsername(uN)
 		setEnteredAge(uA)
+		// setEnteredGen(uG)
 	}
 
 	const addUserHandler = (uName, uAge, uGen, uId) => {
@@ -60,15 +62,11 @@ const App = () => {
 		})
 	}
 
-	const editItemHandler = (uName, uAge, uGen, uId) => {
+	const editUserHandler = (uName, uAge, uGen, uId) => {
 		if (enteredAge.trim().length === 0 || enteredUsername.trim().length === 0) {
 			setError({ title: 'hey there', message: 'uuum, input something!' })
 			return
 		}
-		console.log(
-			'🚀 ~ file: AddUser.js ~ line 33 ~ SubmitHandler ~ enteredUsername',
-			enteredUsername
-		)
 		// if (enteredUsername == 1) {
 		// 	console.log('hi')
 		// }
@@ -85,8 +83,11 @@ const App = () => {
 			})
 			return
 		}
+		console.log('entered Username: ', enteredUsername)
+		console.log('entered Age: ', enteredAge)
+		setEdit(null)
 	}
-	const deleteItemHandler = () => {
+	const deleteUserHandler = () => {
 		setUsersList((prev) => {
 			const uId = localStorage.getItem('deletedUserId')
 			const updatedUsers = prev.filter((user) => user.id !== uId)
@@ -94,13 +95,15 @@ const App = () => {
 			// console.log('prev', prev)
 			console.log('i got deleted :(', prev.filter((user) => user.id === uId)[0])
 			localStorage.setItem('userData', JSON.stringify([...updatedUsers]))
-			closeHandler()
+			closeErrorHandler()
 			localStorage.removeItem('deletedUserId')
 			return updatedUsers
 		})
 	}
-	const closeHandler = () => {
+	const closeErrorHandler = () => {
 		setError(null)
+	}
+	const closeEditHandler = () => {
 		setEdit(null)
 	}
 	return (
@@ -109,14 +112,14 @@ const App = () => {
 			<UserList
 				users={usersList}
 				genders={gendersArray}
-				// onDelete={deleteItemHandler}
+				// onDelete={deleteUserHandler}
 				onDelete={openErrorHandler}
 				onEdit={openEditHandler}
 			/>
 			{error && (
 				<Modal
-					onSubmit={deleteItemHandler}
-					onClose={closeHandler}
+					onSubmit={deleteUserHandler}
+					onClose={closeErrorHandler}
 					title={error.title}
 					message={error.message}
 					yes={error.yes}
@@ -126,8 +129,8 @@ const App = () => {
 			)}
 			{edit && (
 				<Modal
-					onSubmit={editItemHandler}
-					onClose={closeHandler}
+					onSubmit={editUserHandler}
+					onClose={closeEditHandler}
 					title={edit.title}
 					// message={edit.message}
 					yes={edit.yes}
@@ -138,7 +141,6 @@ const App = () => {
 						name='username'
 						id='username'
 						type='text'
-						// value={edit.userName}
 						value={enteredUsername}
 						onChange={usernameChangeHandler}
 					/>
@@ -148,7 +150,6 @@ const App = () => {
 						name='age'
 						type='number'
 						onChange={ageChangeHandler}
-						// value={edit.userAge}
 						value={enteredAge}
 					/>
 				</Modal>

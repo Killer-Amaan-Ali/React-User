@@ -17,6 +17,10 @@
   text-transform: capitalize;
 }
 
+.input select {
+  background: none;
+}
+
 .input select,
 .input input {
   font: inherit;

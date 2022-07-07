@@ -148,9 +148,10 @@ const App = () => {
 				<Modal
 					className={styles.input}
 					onClose={closeEditHandler}
+					onSubmit={editUserHandler}
 					title={edit.title}
-					// confirm
-					// yes={}
+					confirm
+					yes={edit.yes}
 					no={edit.no}>
 					<Form
 						usernameValue={enteredUsername}
@@ -160,7 +161,8 @@ const App = () => {
 						genValue={enteredGen}
 						genOnChange={genChangeHandler}
 						gendersArray={gendersArray}
-						onSubmit={editUserHandler}
+						// onSubmit={editUserHandler}
+						actions={false}
 						type='edit'
 					/>
 				</Modal>

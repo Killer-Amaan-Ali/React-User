@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
 import Card from '../UI/Card'
-import Button from '../UI/Button'
 import Modal from '../UI/Modal'
 import Form from './Form'
 import styles from './AddUser.module.css'
 const AddUser = (props) => {
+	const [error, setError] = useState()
 	const defGen = props.genders[0]
 	const [enteredUsername, setEnteredUsername] = useState('')
 	const [enteredAge, setEnteredAge] = useState('')
 	const [enteredGen, setEnteredGen] = useState(defGen)
 	// const [enteredDate, setEnteredDate] = useState('')
-	const [error, setError] = useState()
 
 	const usernameChangeHandler = (event) => {
 		setEnteredUsername(event.target.value)
@@ -38,9 +37,6 @@ const AddUser = (props) => {
 			'🚀 ~ file: AddUser.js ~ line 33 ~ SubmitHandler ~ enteredUsername',
 			enteredUsername
 		)
-		// if (enteredUsername == 1) {
-		// 	console.log('hi')
-		// }
 		if (+enteredAge < 1) {
 			setError({
 				title: 'baby!',

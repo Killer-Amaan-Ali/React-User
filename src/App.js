@@ -4,9 +4,11 @@ import UserList from './components/Users/UserList'
 import Modal from './components/UI/Modal'
 import Form from './components/Users/Form'
 import styles from './components/Users/AddUser.module.css'
+
 const gendersArray = ['male', 'female']
+const userArrays = JSON.parse(localStorage.getItem('userData')) || ''
+
 const App = () => {
-	const userArrays = JSON.parse(localStorage.getItem('userData')) || ''
 	const [usersList, setUsersList] = useState([...userArrays])
 	const [enteredUsername, setEnteredUsername] = useState('')
 	const [enteredAge, setEnteredAge] = useState('')

@@ -119,6 +119,7 @@ const App = () => {
 	}
 	const closeErrorHandler = () => {
 		setError(null)
+		localStorage.removeItem('deletedUserId')
 	}
 	const closeEditHandler = () => {
 		setEdit(null)

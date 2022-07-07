@@ -3,20 +3,25 @@ import Card from '../UI/Card'
 import Modal from '../UI/Modal'
 import Form from './Form'
 import styles from './AddUser.module.css'
+
+const draftName = localStorage.getItem('draft name')
+const draftAge = localStorage.getItem('draft age')
 const AddUser = (props) => {
 	const [error, setError] = useState()
 	const defGen = props.genders[0]
-	const [enteredUsername, setEnteredUsername] = useState('')
-	const [enteredAge, setEnteredAge] = useState('')
+	const [enteredUsername, setEnteredUsername] = useState(draftName || '')
+	const [enteredAge, setEnteredAge] = useState(draftAge || '')
 	const [enteredGen, setEnteredGen] = useState(defGen)
 	// const [enteredDate, setEnteredDate] = useState('')
 
 	const usernameChangeHandler = (event) => {
 		setEnteredUsername(event.target.value)
+		localStorage.setItem('draft name', event.target.value)
 	}
 
 	const ageChangeHandler = (event) => {
 		setEnteredAge(event.target.value)
+		localStorage.setItem('draft age', event.target.value)
 	}
 
 	const genChangeHandler = (event) => {

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Card from '../UI/Card'
 import Button from '../UI/Button'
 import Modal from '../UI/Modal'
+import Form from './Form'
 import styles from './AddUser.module.css'
-
 const AddUser = (props) => {
 	const defGen = props.genders[0]
 	const [enteredUsername, setEnteredUsername] = useState('')
@@ -78,53 +78,16 @@ const AddUser = (props) => {
 				/>
 			)}
 			<Card className={styles.input}>
-				<form onSubmit={SubmitHandler}>
-					<label htmlFor='username'>name: </label>
-					<input
-						type='text'
-						name='username'
-						id='username'
-						onChange={usernameChangeHandler}
-						value={enteredUsername}
-					/>
-					<label htmlFor='age'>Age (in years): </label>
-					<input
-						type='number'
-						name='age'
-						id='age'
-						onChange={ageChangeHandler}
-						value={enteredAge}
-					/>
-					<label htmlFor='gender'>Gender: </label>
-					<select
-						name='gender'
-						id='gender'
-						value={enteredGen}
-						onChange={genChangeHandler}>
-						{props.genders.map((gen) => {
-							return (
-								<option key={gen} value={gen}>
-									{gen}
-								</option>
-							)
-						})}
-					</select>
-					{/* <label htmlFor='date'>DOB: </label>
-					<input
-						type='date'
-						name='date'
-						id='date'
-						value={enteredDate}
-						onChange={dateChangeHandler}
-					/> */}
-					<Button
-						title='Add User'
-						name='Add User'
-						value='Add User'
-						type='submit'>
-						Add User
-					</Button>
-				</form>
+				<Form
+					onSubmit={SubmitHandler}
+					usernameValue={enteredUsername}
+					usernameOnChange={usernameChangeHandler}
+					ageValue={enteredAge}
+					ageOnChange={ageChangeHandler}
+					genValue={enteredGen}
+					genOnChange={genChangeHandler}
+					gendersArray={props.genders}
+				/>
 			</Card>
 		</>
 	)

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AddUser from './components/Users/AddUser'
 import UserList from './components/Users/UserList'
 import Modal from './components/UI/Modal'
+import Form from './components/Users/Form'
 import styles from './components/Users/AddUser.module.css'
 const gendersArray = ['male', 'female']
 const App = () => {
@@ -148,39 +149,18 @@ const App = () => {
 					onClose={closeEditHandler}
 					title={edit.title}
 					// message={edit.message}
+					confirm
 					yes={edit.yes}
-					no={edit.no}
-					confirm>
-					<label htmlFor='username'>Name: </label>
-					<input
-						name='username'
-						id='username'
-						type='text'
-						value={enteredUsername}
-						onChange={usernameChangeHandler}
+					no={edit.no}>
+					<Form
+						usernameValue={enteredUsername}
+						usernameOnChange={usernameChangeHandler}
+						ageValue={enteredAge}
+						ageOnChange={ageChangeHandler}
+						genValue={enteredGen}
+						genOnChange={genChangeHandler}
+						gendersArray={gendersArray}
 					/>
-					<label htmlFor='age'>Age (in years): </label>
-					<input
-						id='age'
-						name='age'
-						type='number'
-						onChange={ageChangeHandler}
-						value={enteredAge}
-					/>
-					<label htmlFor='gender'>Gender: </label>
-					<select
-						name='gender'
-						id='gender'
-						onChange={genChangeHandler}
-						value={enteredGen}>
-						{gendersArray.map((gen) => {
-							return (
-								<option key={gen} value={gen}>
-									{gen}
-								</option>
-							)
-						})}
-					</select>
 				</Modal>
 			)}
 		</>

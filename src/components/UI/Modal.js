@@ -20,7 +20,7 @@ const Overlay = (props) => {
 					<p>{props.message}</p>
 				</div>
 			)}
-			<div className={`${props.className}`}>{props.children}</div>
+			<div className={props.className}>{props.children}</div>
 			<footer className={styles.actions}>
 				<Button title={props.no || 'close'} onClick={props.onClose} autoFocus>
 					{props.no || 'close'}

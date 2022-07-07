@@ -6,9 +6,10 @@ import styles from './AddUser.module.css'
 
 const draftName = localStorage.getItem('draft name')
 const draftAge = localStorage.getItem('draft age')
+
 const AddUser = (props) => {
-	const [error, setError] = useState()
 	const defGen = props.genders[0]
+	const [error, setError] = useState()
 	const [enteredUsername, setEnteredUsername] = useState(draftName || '')
 	const [enteredAge, setEnteredAge] = useState(draftAge || '')
 	const [enteredGen, setEnteredGen] = useState(defGen)
@@ -61,6 +62,8 @@ const AddUser = (props) => {
 			enteredGen,
 			`u${Math.random()}`
 		)
+		localStorage.setItem('draft name', '')
+		localStorage.setItem('draft age', '')
 		setEnteredUsername('')
 		setEnteredAge('')
 		setEnteredGen(defGen)

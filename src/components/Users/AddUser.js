@@ -83,6 +83,7 @@ const AddUser = (props) => {
 					genValue={enteredGen}
 					genOnChange={genChangeHandler}
 					gendersArray={props.genders}
+					actions
 				/>
 			</Card>
 		</>

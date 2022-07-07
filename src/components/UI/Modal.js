@@ -39,11 +39,24 @@ const Overlay = (props) => {
 	)
 }
 const Modal = (props) => {
+	const backdrop = document.getElementById('backdrop-root')
 	const overlay = document.getElementById('overlay-root')
 	return (
 		<div className={`${styles?.wrapper} ${props?.className}`}>
-			{ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, overlay)}
-			{ReactDOM.createPortal(<Overlay />, overlay)}
+			{ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, backdrop)}
+			{ReactDOM.createPortal(
+				<Overlay
+					title={props.title}
+					message={props.message}
+					children={props.children}
+					no={props.no}
+					onClose={props.onClose}
+					confirm={props.confirm}
+					yes={props.yes}
+					onSubmit={props.onSubmit}
+				/>,
+				overlay
+			)}
 		</div>
 	)
 }

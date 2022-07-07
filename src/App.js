@@ -145,7 +145,7 @@ const App = () => {
 				<Modal
 					className={styles.input}
 					onSubmit={editUserHandler}
-					// onClose={closeEditHandler}
+					onClose={closeEditHandler}
 					title={edit.title}
 					// message={edit.message}
 					yes={edit.yes}

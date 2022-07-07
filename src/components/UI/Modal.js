@@ -20,7 +20,7 @@ const Overlay = (props) => {
 					<p>{props.message}</p>
 				</div>
 			)}
-			<div className={styles.children}>{props.children}</div>
+			<div className={`${props.className}`}>{props.children}</div>
 			<footer className={styles.actions}>
 				<Button title={props.no || 'close'} onClick={props.onClose} autoFocus>
 					{props.no || 'close'}
@@ -42,10 +42,11 @@ const Modal = (props) => {
 	const backdrop = document.getElementById('backdrop-root')
 	const overlay = document.getElementById('overlay-root')
 	return (
-		<div className={`${styles?.wrapper} ${props?.className}`}>
+		<div className={props?.className}>
 			{ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, backdrop)}
 			{ReactDOM.createPortal(
 				<Overlay
+					className={props.className}
 					title={props.title}
 					message={props.message}
 					children={props.children}

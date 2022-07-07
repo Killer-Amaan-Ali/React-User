@@ -1,5 +1,5 @@
 import React from 'react'
-// import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom'
 import Card from './Card'
 import Button from './Button'
 import styles from './Modal.module.css'
@@ -39,10 +39,11 @@ const Overlay = (props) => {
 	)
 }
 const Modal = (props) => {
+	const overlay = document.getElementById('overlay-root')
 	return (
 		<div className={`${styles?.wrapper} ${props?.className}`}>
-			<Backdrop onClose={props.onClose} />
-			<Overlay />
+			{ReactDOM.createPortal(<Backdrop onClose={props.onClose} />, overlay)}
+			{ReactDOM.createPortal(<Overlay />, overlay)}
 		</div>
 	)
 }
